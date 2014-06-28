@@ -1,0 +1,33 @@
+//-----------------------------------------------------------------------------
+//- head要素
+//-----------------------------------------------------------------------------
+mixin base_setting-head(subtitle)
+  title= meta.title + " - " + subtitle
+  meta(charset='UTF-8')
+  meta(name='viewport' content='width=device-width, initial-scale=1.0')
+  meta(name='keywords' content=meta.keywords)
+  meta(name='description' content=meta.description)
+  meta(name='robots' content='index, follow')
+  meta(name='apple-mobile-web-app-capable' content='yes')
+  meta(name='apple-mobile-web-app-status-bar-style' content='black-translucent')
+  
+  meta(property="og:type" content="website")
+  meta(property="og:site_name" content=meta.title)
+  //-meta(property="og:url" content="")
+  //-meta(property="og:image" content="")
+  
+  meta(name="twitter:site" content="@" + meta.title)
+  //-meta(name="twitter:card" content="summary")
+  //-meta(name="twitter:site" content="@webtanforum")
+  
+  for list in plugins_cssList
+    link(rel='stylesheet' href=path_plugin + list)
+  link(rel='stylesheet' href=path_css + 'main.css')
+  
+//-----------------------------------------------------------------------------
+//- jsリンク
+//-----------------------------------------------------------------------------
+mixin base_setting-jsLink()
+  for list in plugins_jsList
+    script(src=path_plugin + list)
+  script(src=path_js + 'main.js')

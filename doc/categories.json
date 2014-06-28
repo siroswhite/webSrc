@@ -1,0 +1,22 @@
+[
+    {
+        "name": "main.js",
+        "groups": [
+            {
+                "name": "subdir1",
+                "classes": [
+                    "array",
+                    "hash"
+                ]
+            },
+            {
+                "name": "web",
+                "classes": [
+                    "web",
+                    "data",
+                    "data2"
+                ]
+            }
+        ]
+    }
+]

@@ -1,0 +1,32 @@
+//==============================================================================
+// shadow
+//==============================================================================
+box_shadow-test(shadow = 0.5)
+  box-shadow(rgba(0, 0, 0, shadow) 0 0 20px)
+  
+box_shadow-black(shadow = 1.0)
+  box-shadow(rgba(0, 0, 0, shadow) 2px 2px 10px)
+
+box_shadow-border(shadow = 0.15)
+  box-shadow(rgba(0, 0, 0, shadow) 0 0 2px)
+
+box_shadow_embossLeft(shadow = 0.15)
+  box-shadow(rgba(0, 0, 0, shadow) 2px 2px 5px)
+
+box_shadow-emboss(shadow = 0.15)
+  box-shadow(rgba(0, 0, 0, shadow) 0 10px 6px -6px)
+
+box_shadow-growing(shadow = 0.15)
+  box-shadow(rgba(0, 0, 0, shadow) 0 0 20px)
+
+box_shadow-inset(shadow = 0.2, insetPX = 20px)
+  box-shadow(rgba(0, 0, 0, shadow) 0 0 insetPX inset)
+
+box_border_under(shadow = 0.08)
+  box-shadow: 0 0 2px 1px rgba(255, 255, 255, shadow) inset, 0 16px 10px -8px rgba(0, 0, 0, 0.6);
+
+//==============================================================================
+// radius
+//==============================================================================
+box_radius-small()
+  border-radius(10px, 10px)

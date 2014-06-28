@@ -1,0 +1,74 @@
+//-----------------------------------------------------------------------------
+//- nav
+//-----------------------------------------------------------------------------
+mixin bootstrap_nav(navID, linkList, xcolor, brandImg)
+  nav(id=navID class='navbar navbar-inverse navbar-fixed-top' data-webEle=xcolor)
+    div(class='navbar-header')
+      button(class='navbar-toggle' data-toggle='collapse' data-target='.target')
+        span(class='icon-bar')
+        span(class='icon-bar')
+        span(class='icon-bar')
+      a(class='navbar-brand' href=path_webRoot + 'index.html')
+        img(src=brandImg)
+    div(class='collapse navbar-collapse target')
+      ul(id=navID + 'UL' class='nav navbar-nav navbar-right')
+        for linkTemp, index in linkList
+          li
+            a(href=linkTemp.link)
+              +icon("bootstrap", linkTemp.icon)
+              =linkTemp.name
+
+//-----------------------------------------------------------------------------
+//- carousel
+//-----------------------------------------------------------------------------
+mixin bootstrap_carousel(imgList)
+  div(id='carousel-example-generic' class='carousel slide' data-ride='carousel')
+    ol(class='carousel-indicators')
+      for imgTemp, index in imgList
+        if index == 0
+          -cls = "active"
+        else
+          -cls = ""
+        li(data-target='#carousel-example-generic' data-slide-to=index class=cls)
+      
+    .carousel-inner
+      for imgTemp, index in imgList
+        if index == 0
+          -cls = "item active"
+        else
+          -cls = "item"
+        div(class=cls)
+          a(href="#")
+            img(src=path_img_bootstrap + 'carousel/' + imgTemp alt=index)
+          
+    a(class='left carousel-control' href='#carousel-example-generic' data-slide='prev')
+      span(class='glyphicon glyphicon-chevron-left')
+    a(class='right carousel-control' href='#carousel-example-generic' data-slide='next')
+      span(class='glyphicon glyphicon-chevron-right')
+
+//-----------------------------------------------------------------------------
+//- accordion
+//-----------------------------------------------------------------------------
+-_bootstrap_accordion_ID
+mixin  bootstrap_accordionTop(id)
+  -_bootstrap_accordion_ID=id
+  div(class="panel-group" id=_bootstrap_accordion_ID)
+    block
+
+mixin  bootstrap_accordion(title, index, icon)
+  - icon = icon || "book"
+  div(class="panel panel-default")
+    div(class="panel-heading")
+      h3(class="panel-title")
+        a(class="accordion-toggle" data-toggle="collapse" data-parent="#"+_bootstrap_accordion_ID href="#collapse" + index)
+          +icon("bootstrap", icon)
+          =title
+          
+    if index == 0
+      - cls = "panel-collapse collapse in"
+    else
+      - cls = "panel-collapse collapse"
+      
+    div(id="collapse" + index class=cls)
+      div(class="panel-body" data-webEle="text")
+        block

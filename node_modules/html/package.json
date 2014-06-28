@@ -1,0 +1,6 @@
+{
+  "name": "domCreater",
+  "version": "0.1",
+  "description": "dom create tool",
+  "main": "index.coffee"
+}

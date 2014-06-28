@@ -1,0 +1,12 @@
+//-----------------------------------------------------------------------------
+//- icon
+//-----------------------------------------------------------------------------
+mixin icon(type, name, addClass)
+  -addClass = addClass || ""
+  case type
+    when "bootstrap"
+      i(class='glyphicon glyphicon-' + name)
+    when "fontAwesome"
+      i(class='fa fa-' + name + ' ' + addClass)
+    default
+      ="illegal icon type:" + type

@@ -1,0 +1,6 @@
+{
+  "name": "myTask",
+  "version": "0.1",
+  "description": "coffee compile",
+  "main": "main.coffee"
+}

@@ -1,0 +1,80 @@
+#webCustomizerArea
+  top: 100 px
+  z-index: 1000
+  position: fixed
+  
+  now_top = 0
+  top_add = 30
+  #dataChanger
+    top: now_top px
+  now_top += top_add
+  #optionChanger
+    top: now_top px
+  now_top += top_add
+  #colorSchemeChanger
+    top: now_top px
+  now_top += top_add
+  #cssChanger
+    top: now_top px
+  now_top += top_add
+
+.webCustomizer
+  position: absolute
+  z-index: 1000
+  
+  table
+    text-align: left
+  
+  .fixed
+    width: 30px
+    height: 30px
+    background-color: #333
+    position: fixed
+    pos_align-horInline()
+    
+    i
+      width: 30px
+      color: red
+  
+  .eleText
+    color: #009    
+  
+  .sectionText
+    color: #900
+    
+  .triggerText
+    background-color: #999
+  
+  .headerArea
+    height: 50px
+    background-color: #333
+    color: #fff
+    z-index: 1001
+    text-align: left
+    padding-left: 35px
+    
+    input, select
+      color: #000
+    
+    .inline
+      display: inline
+    
+  .setter
+    border: solid 2px #000
+  
+  .contentsArea
+    max-width: 1000px
+    max-height: 400px
+    padding: 10px
+    overflow-y: scroll
+    background-color: #ccc
+  
+  .contents
+    pos_align-horInline()
+  
+  .slider
+    margin-left: 10px
+    margin-right: 10px
+    width: 200px
+    display:inline-block
+  

@@ -1,0 +1,10 @@
+//-============================================================================
+//- footer
+//-============================================================================
+mixin footerLink(name, linkList)
+  nav.footeLinkArea
+    h4.name=name
+    for linkTemp, index in linkList
+        li
+          a(href=linkTemp.link)
+            =linkTemp.name

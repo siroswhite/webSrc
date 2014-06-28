@@ -1,0 +1,12 @@
+// ノードコマンド受付
+node
+
+// パス確認
+module.paths
+
+// 環境パス確認
+echo NODE_PATH=%NODE_PATH%
+
+// 環境パス追加
+SETX /M NODE_PATH "%NODE_PATH%;C:\xampp\htdocs\projects\webSrc\node_modules"
+SETX /M NODE_PATH "%NODE_PATH%;C:\Users\AKIRA\AppData\Roaming\npm\node_modules

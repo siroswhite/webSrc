@@ -1,0 +1,31 @@
+include ../param/_param
+block include
+include ../param/_include
+
+doctype html
+html
+  head
+    block head
+  body
+    #loading
+      img(id="loadingImg" src=path_loadImg)
+      p(id="load_count")
+        ="0%"
+    if debug
+      #webCustomizerArea
+        
+    header(data-webEle="header")
+      block header
+    #transition
+      #contents(data-webEle="BG")
+        .main
+          block main
+      footer(data-webEle="footer")
+        .header
+          block footer_header
+        .main
+          block footer_main
+        .footer
+          block footer_footer
+    +base_setting-jsLink()
+    block js

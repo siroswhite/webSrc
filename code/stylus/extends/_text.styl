@@ -1,0 +1,28 @@
+//==============================================================================
+// main
+//==============================================================================
+.com_text
+  margin-bottom: 10px
+  
+//==============================================================================
+// dateCell
+//==============================================================================
+$com_text_dateCell
+  @extend .com_text
+  display: table
+  width: 100%
+  .date
+    font-weight: bold
+    display: table-cell
+    width: 20%
+    padding-right: 10px
+  .text
+    display: table-cell
+    width: 80%
+
+$ex_tableCell
+  display: table
+  width: 100%
+  
+  .col
+    display: table-cell

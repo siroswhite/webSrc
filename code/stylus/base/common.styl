@@ -1,0 +1,51 @@
+//==============================================================================
+// base
+//==============================================================================
+html
+  pos_size_allScreen()
+  overflow-y: scroll
+
+body
+  pos_size_allScreen()
+  text_family-Gothic()
+  img_bg('body')
+  
+h1, h2, h3, h4, h5
+  padding: 0px
+  margin: 0px
+
+#transition
+  pos_size_allScreen()
+  display: none
+  
+//==============================================================================
+// contents
+//==============================================================================
+#contents
+  min-height: 100%
+  height: auto !important
+  img_bg('contents')
+
+//==============================================================================
+// footer
+//==============================================================================
+footer
+  .footeLinkArea
+    margin-bottom: 10px
+    .name
+      border-bottom: double 1px #777
+      margin-bottom: 5px
+  
+  .socialArea
+    pos_align-horInline()
+    margin-bottom: 20px
+  
+  .backButtonArea
+    pos_align-horInline()
+  
+  .footer
+    height: 50px
+    margin-top: 20px
+  
+  #copyright
+    pos_align-horInline()
