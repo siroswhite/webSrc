@@ -63,7 +63,12 @@ watchList = {
     taskName: "jsduck"
     pathList_watch:['../doc/main.js']
   }
+# liveScript: {
+#   taskName: "liveScript"
+#   pathList_watch: [path_webSrc.node_modules + '**/*.ls', path_project.code + "ls/**/*.ls"]
+# }
 }
+
 
 #=============================================================================
 # task
@@ -84,6 +89,16 @@ gulp.task('jade', ->
 gulp.task('coffee', ->
   myTask.coffee(
       [path_project.code + "coffee/main.coffee"]
+    , path_project.webroot_code + "js/"
+  )
+)
+
+#-----------------------------------------------------------------------------
+# liveScript
+#-----------------------------------------------------------------------------
+gulp.task('liveScript', ->
+  myTask.liveScript(
+      [path_project.code + "ls/main.ls"]
     , path_project.webroot_code + "js/"
   )
 )

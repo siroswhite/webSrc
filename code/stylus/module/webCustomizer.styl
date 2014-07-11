@@ -3,7 +3,7 @@
   z-index: 1000
   position: fixed
   
-  now_top = 0
+  now_top = 200
   top_add = 30
   #dataChanger
     top: now_top px
@@ -28,7 +28,7 @@
   .fixed
     width: 30px
     height: 30px
-    background-color: #333
+    background-color: #000
     position: fixed
     pos_align-horInline()
     
@@ -36,45 +36,50 @@
       width: 30px
       color: red
   
-  .eleText
-    color: #009    
-  
-  .sectionText
-    color: #900
-    
-  .triggerText
-    background-color: #999
-  
-  .headerArea
-    height: 50px
-    background-color: #333
-    color: #fff
-    z-index: 1001
-    text-align: left
-    padding-left: 35px
-    
-    input, select
-      color: #000
-    
-    .inline
-      display: inline
-    
-  .setter
-    border: solid 2px #000
-  
-  .contentsArea
-    max-width: 1000px
-    max-height: 400px
-    padding: 10px
-    overflow-y: scroll
-    background-color: #ccc
-  
   .contents
     pos_align-horInline()
-  
-  .slider
-    margin-left: 10px
-    margin-right: 10px
-    width: 200px
-    display:inline-block
-  
+
+    .headerArea
+      height: 50px
+      background-color: #000
+      color: #fff
+      z-index: 1001
+      text-align: left
+      padding-left: 35px
+      
+      input, select
+        color: #000
+      
+    .inline
+      display: inline
+    .displayNone
+      display: none
+      
+    .contentsArea
+      pos_align-horInline()
+      max-width: 1000px
+      min-width: 400px
+      max-height: 400px
+      overflow-y: scroll
+      background-color: #ccc
+
+      .setterArea
+        border: solid 1px #000
+      
+        .trigger
+          color: white
+          font-size: 17px
+          background-color: #333
+        
+        .contents
+          padding: 10px
+          color: black
+          background-color: #ccc
+          .sub
+            color: red
+
+          .slider
+            margin-left: 10px
+            margin-right: 10px
+            width: 200px
+            display:inline-block
