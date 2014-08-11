@@ -14,12 +14,13 @@ cp = require('child_process')
 #-----------------------------------------------------------------------------
 projectList = [
   "Sirolabo"
-  "world"
   "HundredHP"
   "HundredProduct"
+  "game"
+  "attic"
 ]
 
-name_project = projectList[2]
+name_project = projectList[3]
 console.log("name_project: " + name_project)
 
 #-----------------------------------------------------------------------------
@@ -63,10 +64,10 @@ watchList = {
     taskName: "jsduck"
     pathList_watch:['../doc/main.js']
   }
-# liveScript: {
-#   taskName: "liveScript"
-#   pathList_watch: [path_webSrc.node_modules + '**/*.ls', path_project.code + "ls/**/*.ls"]
-# }
+  node: {
+    taskName: "node"
+    pathList_watch:['../node/**/*.coffee']
+  }
 }
 
 
@@ -118,6 +119,16 @@ gulp.task('coffeeDoc', ->
 #-----------------------------------------------------------------------------
 gulp.task('jsduck', ->
   cp.exec('jsduck ../doc/main.js --output ../doc/html/ --title "websrc document"')
+)
+
+#-----------------------------------------------------------------------------
+# node
+#-----------------------------------------------------------------------------
+gulp.task('node', ->
+  myTask.nodeCoffee(
+      ["../node/core.coffee"]
+    , "../node/"
+  )
 )
 
 #-----------------------------------------------------------------------------

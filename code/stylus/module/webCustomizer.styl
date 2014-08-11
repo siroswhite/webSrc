@@ -41,12 +41,15 @@
 
     .headerArea
       height: 50px
+      width: auto
       background-color: #000
       color: #fff
       z-index: 1001
       text-align: left
       padding-left: 35px
-      
+
+      .headerFunction
+        min-width: 380px
       input, select
         color: #000
       
@@ -58,11 +61,16 @@
     .contentsArea
       pos_align-horInline()
       max-width: 1000px
-      min-width: 400px
+      min-width: 100px
+      width: auto
+      white-space: nowrap
       max-height: 400px
       overflow-y: scroll
       background-color: #ccc
-
+      
+      .css
+        min-width: 400px
+        
       .setterArea
         border: solid 1px #000
       

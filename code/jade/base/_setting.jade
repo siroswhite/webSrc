@@ -20,9 +20,11 @@ mixin base_setting-head(subtitle)
   //-meta(name="twitter:card" content="summary")
   //-meta(name="twitter:site" content="@webtanforum")
   
+  link(rel='shortcut icon' href="./favicon.ico")
   for list in plugins_cssList
     link(rel='stylesheet' href=path_plugin + list)
   link(rel='stylesheet' href=path_css + 'main.css')
+  link(rel='stylesheet' href=path_css + 'webcustomizer.css')
   
 //-----------------------------------------------------------------------------
 //- jsリンク
