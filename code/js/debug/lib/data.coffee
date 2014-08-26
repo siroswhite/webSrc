@@ -1,0 +1,17 @@
+exports.imageList = [
+	"none.png"
+	"bg1.png"
+	"bg2.png"
+	"contents.png"
+	"button.png"
+	"char_A.jpg"
+	"char_B.jpg"
+	"gallery.jpg"
+	"h_char.jpg"
+	"h_dl.jpg"
+	"h_garallery.jpg"
+	"h_story.jpg"
+	"main.jpg"
+	"room.jpg"
+	"story.jpg"
+]

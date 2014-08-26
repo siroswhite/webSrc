@@ -1,0 +1,6 @@
+{
+  "name": "webCustomizer",
+  "version": "0.1",
+  "description": "web Custome tool",
+  "main": "index.coffee"
+}

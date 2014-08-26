@@ -2,3 +2,4 @@ bk/
 doc/
 cmd/
 buildSystem/node_modules/
+server/src/

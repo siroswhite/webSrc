@@ -1,0 +1,28 @@
+include ../core/_param
+block localParam
+include ../core/_plugin
+include ../core/_include
+
+doctype html
+html
+  head
+    block head
+  body
+    if com.load
+      #loading
+        img(id="loadingImg" src=webSrcFile.img.loading)
+        p(id="load_count")
+          ="0%"
+    #webCustomizerArea
+    header(data-webEle="header")
+      block header
+    #transition
+      #contents(data-webEle="BG")
+        .main
+          block main
+      footer(data-webEle="footer")
+        block footer
+    +makeJSLink()
+    #tools
+      if node.load.canvasEditor
+        +canvasEditor()

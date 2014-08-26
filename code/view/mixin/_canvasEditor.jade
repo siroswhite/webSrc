@@ -1,0 +1,104 @@
+mixin canvasEditor()
+	div(id="objEditor" class="game box_accordion draggable")
+		div(class="trigger" data-webele="debugGameToolArea_icon")
+			i(id="objEditorIcon" class="fa-2x fa fa-edit")
+		div(class="contents" data-webele="debugGameToolArea_contents")
+			div(class="headerArea" data-webele="editor_header")
+				span="objID"
+				input(id="objID_input" class="" type="text" size="10" value="none")
+			div(class="contentsArea css" data-webele="editor_contentsArea")
+				div(id="baseSetter" class="box_accordion" data-webele="editor_setterArea")
+					div(class="trigger")="base"
+					div(class="contents" data-webele="setterContents")
+						table
+							tr
+								td="save"
+								td
+									button(id="obj_base_save-button" type="button" class="")="save"
+							tr
+								td="load"
+								td
+									button(id="obj_base_load-button" type="button" class="")="load"
+							tr
+								td="create"
+								td
+									button(id="obj_base_create-button" type="button" class="")="create"
+							tr
+								td="delete"
+								td
+									button(id="obj_base_delete-button" type="button" class="")="delete"
+				div(id="colorSetter" class="box_accordion" data-webele="editor_setterArea")
+					div(class="trigger")="color"
+					div(class="contents" data-webele="setterContents")
+						table
+							tr
+								td
+									div(id="obj_color_colorPicker")
+							tr
+								td
+									input(id="obj_color_colorPicker_input" type="text" value="0:0:0_#000000")
+				div(id="rectangleSetter" class="box_accordion" data-webele="editor_setterArea")
+					div(class="trigger")="rectangle"
+					div(class="contents" data-webele="setterContents")
+						table
+							tr
+								td="width"
+								td
+									div(id="obj_rectangle_width-slider" class=" slider")
+									input(id="obj_rectangle_width-slider_input" class=" sliderInput" type="text" size="4" value="")
+							tr
+								td="height"
+								td
+									div(id="obj_rectangle_height-slider" class=" slider")
+									input(id="obj_rectangle_height-slider_input" class=" sliderInput" type="text" size="4" value="")
+				div(id="imageSetter" class="box_accordion" data-webele="editor_setterArea")
+					div(class="trigger")="image"
+					div(class="contents" data-webele="setterContents")
+						table
+							tr
+								td="fileName"
+								td
+									select(id="obj_image_fileName-selectBox" class=" select")
+										option(value="")
+										option(value="bg1.png")="bg1.png"
+										option(value="bg2.png")="bg2.png"
+				div(id="textSetter" class="box_accordion" data-webele="editor_setterArea")
+					div(class="trigger")="text"
+					div(class="contents" data-webele="setterContents")
+						table
+							tr
+								td="text"
+								td
+									input(id="obj_text_text-input" class="" type="text" size="10" value="")
+	div(id="layerEditor" class="game box_accordion draggable")
+		div(class="trigger" data-webele="debugGameToolArea_icon")
+			i(id="layerEditorIcon" class="fa-2x fa fa-copy")
+		div(class="contents" data-webele="debugGameToolArea_contents")
+			div(class="headerArea" data-webele="editor_header")
+				span="layerID"
+				input(id="layerID_input" class="" type="text" size="10" value="none")
+			div(class="contentsArea css" data-webele="editor_contentsArea")
+				div(id="fileSetter" class="box_accordion" data-webele="editor_setterArea")
+					div(class="trigger")="file"
+					div(class="contents" data-webele="setterContents")
+						table
+							tr
+								td="id"
+								td
+									input(id="layer_file_id-input" class="" type="text" size="10" value="")
+							tr
+								td="save"
+								td
+									button(id="layer_file_save-button" type="button" class="")="save"
+							tr
+								td="load"
+								td
+									button(id="layer_file_load-button" type="button" class="")="load"
+							tr
+								td="create"
+								td
+									button(id="layer_file_create-button" type="button" class="")="create"
+							tr
+								td="delete"
+								td
+									button(id="layer_file_delete-button" type="button" class="")="delete"

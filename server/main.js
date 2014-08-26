@@ -1,65 +1,138 @@
-var app, express, fs, http, io, logger, path, rootPath, server, socketIO;
+
+/*
+	require
+ */
+var app, io, localPath, path, r, server, webSrcPath;
+
+r = {};
 
 require('node-monkey').start({
   host: "127.0.0.1",
   port: "50500"
 });
 
-express = require('express');
+r.express = require('express');
 
-logger = require('morgan');
+r.logger = require('morgan');
 
-http = require("http");
+r.http = require("http");
 
-path = require("path");
+r.path = require("path");
 
-fs = require("fs");
+r.fs = require("fs");
 
-socketIO = require('socket.io');
+r.socketIO = require('socket.io');
 
-app = express();
+r.jade = require('jade');
 
-rootPath = __dirname + "/../../game";
 
-app.use(logger('dev'));
+/*
+	define
+ */
+
+app = r.express();
+
+path = {
+  local: __dirname + "/../../sirolabo/",
+  webSrc: __dirname + "/../"
+};
+
+localPath = {
+  view: path.local + "code/view/",
+  css: path.local + "code/css/",
+  src: path.local + "src/"
+};
+
+webSrcPath = {
+  view: path.webSrc + "code/view/",
+  src: path.webSrc + "src/"
+};
+
+
+/*
+	config
+ */
 
 app.set('port', process.env.PORT || 1234);
 
-app.use('/code', express["static"](path.join(rootPath, '/webroot/code')));
-
-app.use('/src', express["static"](path.join(rootPath, '/webroot/src')));
-
 app.set('view engine', 'jade');
 
-app.set('views', __dirname + "/view");
+app.set('views', localPath.view);
 
-app.get('/', function(req, res) {
-  return res.render(rootPath + "/code/jade/index", {
-    title: "test",
-    pretty: true
-  });
+
+/*
+	middleware
+ */
+
+app.use(r.logger('dev'));
+
+app.use('/src', r.express["static"](r.path.join(path.local, 'src/')));
+
+app.use('/webSrc', r.express["static"](r.path.join(__dirname, 'src/')));
+
+app.use(function(err, req, res, next) {
+  console.error(err.stack);
+  return res.send(500, 'Fatal Error');
 });
 
-server = http.createServer(app);
+
+/*
+	server
+ */
+
+server = r.http.createServer(app);
 
 server.listen(app.get("port"), function() {
   return console.log("Express server listening on port " + app.get("port"));
 });
 
-io = socketIO.listen(server);
+io = r.socketIO.listen(server);
 
 io.on('connection', function(socket) {
-  socket.on('systemEditor_save', function(saveData) {
-    return fs.writeFile('systemEditor.txt', saveData, function(err) {
+
+  /*
+  		file
+   */
+  socket.on('fs_write', function(param) {
+    return r.fs.writeFile(param.fileName, param.data, function(err) {
       return console.log(err);
     });
   });
-  return socket.on('systemEditor_load', function() {
-    return fs.readFile('systemEditor.txt', function(err, data) {
+  return socket.on('fs_load', function(param) {
+    return r.fs.readFile(param.fileName, function(err, fileData) {
       if (err) {
         console.log(err);
       }
-      return io.sockets.emit('systemEditor_load_end', JSON.parse(data));
+      return io.sockets.emit(param.id + '_end', JSON.parse(fileData));
     });
+  });
+});
+
+
+/*
+	router
+ */
+
+app.get('/*', function(req, res) {
+  var param, viewName;
+  param = {};
+  param.load = {
+    canvasEditor: false
+  };
+  if (req.params[0]) {
+    viewName = req.params[0];
+  } else {
+    viewName = "index";
+  }
+  return res.render(app.get("views") + viewName + ".jade", {
+    filename: req.params[0],
+    pretty: true,
+    node: param
+  }, function(err, html) {
+    if (err) {
+      return res.send("404 file not found");
+    } else {
+      return res.end(html);
+    }
   });
 });

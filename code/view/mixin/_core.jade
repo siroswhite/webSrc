@@ -1,0 +1,58 @@
+//- head要素作成
+mixin makeHead(subtitle)
+  title= meta.title + " - " + subtitle
+  meta(charset='UTF-8')
+  meta(name='viewport' content='width=device-width, initial-scale=1.0')
+  meta(name='keywords' content=meta.keywords)
+  meta(name='description' content=meta.description)
+  meta(name='robots' content='index, follow')
+  meta(name='apple-mobile-web-app-capable' content='yes')
+  meta(name='apple-mobile-web-app-status-bar-style' content='black-translucent')
+  
+  meta(property="og:type" content="website")
+  meta(property="og:site_name" content=meta.title)
+  //-meta(property="og:url" content="")
+  //-meta(property="og:image" content="")
+  
+  meta(name="twitter:site" content="@" + meta.title)
+  //-meta(name="twitter:card" content="summary")
+  //-meta(name="twitter:site" content="@webtanforum")
+  
+  link(rel='shortcut icon' href="./favicon.ico")
+  for list in plugins_cssList
+    link(rel='stylesheet' href=webSrcPath.plugin + list)
+    
+  link(rel='stylesheet' href=localPath.css + "style.css")
+  link(rel='stylesheet' href=localPath.css + 'webcustomizer.css')
+  
+//- jslink作成
+mixin makeJSLink()
+  for list in plugins_jsList
+    script(src=webSrcPath.plugin + list)
+  script(src=localPath.js + 'main.js')
+
+//- icon生成
+mixin icon(type, name, addClass)
+  -addClass = addClass || ""
+  case type
+    when "bootstrap"
+      i(class='glyphicon glyphicon-' + name)
+    when "fontAwesome"
+      i(class='fa fa-' + name + ' ' + addClass)
+    default
+      ="illegal icon type:" + type
+
+mixin footerLink(name, linkList)
+  nav.footeLinkArea
+    h4.name=name
+    for linkTemp, index in linkList
+      li
+        a(href=linkTemp.link)
+          =linkTemp.name
+
+mixin comText_dateInfo()
+  .comText_dateInfo
+    .date
+      ="YYYY/MM/DD"
+    .text
+      ="更新情報ああああああああああああああああああああああああ"

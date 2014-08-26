@@ -1,0 +1,75 @@
+#debugGameToolArea
+	top: 100 px
+	z-index: 1000
+	position: fixed
+
+	now_top = 200
+	top_add = 30
+	#layerEditor
+		top: now_top px
+	now_top += top_add
+	#objEditor
+		top: now_top px
+	now_top += top_add
+
+.game
+	position: absolute
+	
+	input
+		color: #000
+
+	table
+		text-align: left
+
+	.slider
+		margin-left: 10px
+		margin-right: 10px
+		width: 200px
+		display:inline-block
+
+@media screen and (min-width:0px){ 
+	[data-webele="debugGameToolArea_icon"] {
+		background-color: #000000;
+		color: #ea0000;
+		position: fixed;
+		width: 30px;
+	}
+}
+@media screen and (min-width:0px){ 
+	[data-webele="editor_header"] {
+		background-color: #000000;
+		color: #ffffff;
+		min-width: 200px;
+		min-height: 30px;
+		padding-left: 33px;
+		padding-top: 2px;
+	}
+}
+@media screen and (min-width:0px){ 
+	[data-webele="editor_setterArea"] {
+		background-color: #404040;
+		border-left: solid 1px #000000;
+		border-top: solid 1px #000000;
+		border-right: solid 1px #000000;
+		border-bottom: solid 1px #000000;
+		font-size: 16px;
+		color: #ffffff;
+		text-align: center;
+		text-shadow: px 0px 0px #000000, 0px 0px 0px , 0px 0px 0px , 0px 0px 0px ;
+	}
+}
+@media screen and (min-width:0px){ 
+	[data-webele="setterContents"] {
+		background-color: #bfbfbf;
+		font-size: 14px;
+		font-weight: 100;
+		color: #000000;
+		text-shadow: px px 0px , 0px 0px 0px , 0px 0px 0px , 0px 0px 0px ;
+		white-space: nowrap;
+		width: auto;
+		padding-left: 5px;
+		padding-top: 5px;
+		padding-right: 5px;
+		padding-bottom: 5px;
+	}
+}

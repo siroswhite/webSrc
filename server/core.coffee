@@ -1,46 +1,100 @@
+###
+	require
+###
+r = {}
 require('node-monkey').start({host: "127.0.0.1", port:"50500"})
-express = require('express')
-logger = require('morgan')
-http = require("http")
-path = require("path")
-fs = require("fs")
-socketIO = require('socket.io')
+r.express  = require('express')
+r.logger   = require('morgan')
+r.http     = require("http")
+r.path     = require("path")
+r.fs       = require("fs")
+r.socketIO = require('socket.io')
+r.jade     = require('jade')
 
-app = express()
-rootPath = __dirname + "/../../game"
+###
+	define
+###
+app = r.express()
+path =
+	local: __dirname + "/../../sirolabo/"
+	webSrc: __dirname + "/../"
 
-#config
-app.use(logger('dev'))
+localPath =
+	view: path.local + "code/view/"
+	css: path.local + "code/css/"
+	src: path.local + "src/"
+
+webSrcPath = 
+	view: path.webSrc + "code/view/"
+	src: path.webSrc + "src/"
+
+###
+	config
+###
 app.set('port', process.env.PORT || 1234)
-#app.use(express.favicon());
-
-app.use('/code', express.static(path.join(rootPath, '/webroot/code')))
-app.use('/src', express.static(path.join(rootPath, '/webroot/src')))
 app.set('view engine', 'jade')
-app.set('views', __dirname + "/view")
+app.set('views', localPath.view)
 
-
-app.get('/', (req, res) ->
-	res.render(rootPath + "/code/jade/index", {title: "test", pretty: true})
+###
+	middleware
+###
+app.use(r.logger('dev'))
+#app.use(r.express.favicon(localPath + 'favicon.ico'))
+app.use('/src', r.express.static(r.path.join(path.local, 'src/')))
+app.use('/webSrc', r.express.static(r.path.join(__dirname, 'src/')))
+app.use((err, req, res, next)->
+	console.error(err.stack)
+	res.send(500, 'Fatal Error')
 )
 
-server = http.createServer(app)
+###
+	server
+###
+server = r.http.createServer(app)
 server.listen(app.get("port"), ()->
   console.log("Express server listening on port " + app.get("port"))
 ) 
 
-io = socketIO.listen(server)
+io = r.socketIO.listen(server)
 io.on('connection', (socket) ->
-	socket.on('systemEditor_save', (saveData)->
-		fs.writeFile('systemEditor.txt', saveData, (err) ->
+	###
+		file
+	###
+	socket.on('fs_write', (param)->
+		r.fs.writeFile(param.fileName, param.data, (err) ->
 			console.log err
 		)
 	)
 
-	socket.on('systemEditor_load', ()->
-		fs.readFile('systemEditor.txt', (err, data) ->
+	socket.on('fs_load', (param)->
+		r.fs.readFile(param.fileName, (err, fileData) ->
 			console.log err if err
-			io.sockets.emit 'systemEditor_load_end', JSON.parse(data)
+			io.sockets.emit param.id + '_end', JSON.parse(fileData)
 		)
+	)
+)
+
+###
+	router
+###
+app.get('/*', (req, res) ->
+	param = {}
+	param.load =
+		canvasEditor: false
+
+	if req.params[0] then viewName = req.params[0] else viewName = "index"
+	res.render(
+		app.get("views") + viewName + ".jade"
+		{
+			filename: req.params[0]
+			pretty: true
+			node: param
+		}
+		(err, html) ->
+			if err
+				#res.send err
+				res.send("404 file not found")
+			else
+				res.end(html)
 	)
 )

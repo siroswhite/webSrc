@@ -1,0 +1,63 @@
+//-============================================================================
+//- define
+//-============================================================================
+-plugins_includeList = {}
+-plugins_cssList = []
+-plugins_jsList = []
+
+//-============================================================================
+//- plugin
+//-============================================================================
+//-----------------------------------------------------------------------------
+//- primary
+//-----------------------------------------------------------------------------
+-plugins_includeList["jquery"] = {load:true, dir:"jquery", css:[], js:["jquery-2.1.0.min.js"]}
+-plugins_includeList["aopjs"] = {load:true, dir:"aopjs", css:[], js:["aop-0.5.3.min.js"]}
+-plugins_includeList["lodash"] = {load:true, dir:"lodash", css:[], js:["lodash.min.js"]}
+-plugins_includeList["jqueryUI"] = {load:true, dir:"jqueryUI", css:["jquery-ui-1.10.4.css"], js:["jquery-ui-1.10.4.min.js"]}
+-plugins_includeList["cookie"] = {load:true, dir:"cookie", css:[], js:["jquery.cookie.js"]}
+
+//-----------------------------------------------------------------------------
+//- rendering
+//-----------------------------------------------------------------------------
+-plugins_includeList["paper"] = {load:true, dir:"paper", css:[], js:["paper-full.min.js"]}
+
+//-----------------------------------------------------------------------------
+//- css template
+//-----------------------------------------------------------------------------
+-plugins_includeList["bootstrap"] = {load:false, dir:"bootstrap", css:["bootstrap.css"], js:["bootstrap.min.js"]}
+-plugins_includeList["normalize"] = {load:true, dir:"normalize", css:["normalize.css"], js:[]}
+
+//-----------------------------------------------------------------------------
+//- font
+//-----------------------------------------------------------------------------
+-plugins_includeList["fontAwesome"] = {load:true, dir:"fontAwesome", css:["font-awesome.css"], js:[]}
+
+//-----------------------------------------------------------------------------
+//- color
+//-----------------------------------------------------------------------------
+-plugins_includeList["xcolor"] = {load:true, dir:"xcolor", css:[], js:["jquery.xcolor.min.js"]}
+-plugins_includeList["farbtastic"] = {load:true, dir:"farbtastic", css:["farbtastic.css"], js:["farbtastic_custom.js"]}
+
+//-----------------------------------------------------------------------------
+//- layout
+//-----------------------------------------------------------------------------
+-plugins_includeList["skrollr"] = {load:false, dir:"skrollr", css:[], js:["skrollr.min.js", "skrollr.menu.min.js"]}
+-plugins_includeList["liquid"] = {load:false, dir:"liquid", css:[], js:["jquery.vgrid.min.js", "jquery.easing.1.3.js"]}
+
+//-============================================================================
+//- debug plugins
+//-============================================================================
+if debug
+  -plugins_includeList["jqueryUI"].load = true
+  //- color
+  -plugins_includeList["xcolor"].load = true
+  -plugins_includeList["farbtastic"].load = true
+
+//- set
+for list in plugins_includeList
+  if list.load
+    for cssName in list.css
+      -plugins_cssList.push(list.dir + "/" + cssName)
+    for jsName in list.js
+      -plugins_jsList.push(list.dir + "/" + jsName)

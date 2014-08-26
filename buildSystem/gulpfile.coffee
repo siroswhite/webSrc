@@ -13,14 +13,14 @@ cp = require('child_process')
 # projectName
 #-----------------------------------------------------------------------------
 projectList = [
-  "Sirolabo"
+  "sirolabo"
   "HundredHP"
   "HundredProduct"
   "game"
   "attic"
 ]
 
-name_project = projectList[3]
+name_project = projectList[0]
 console.log("name_project: " + name_project)
 
 #-----------------------------------------------------------------------------
@@ -30,31 +30,28 @@ path_project = {}
 path_project.root = "../../" + name_project + "/"
 path_project.code = path_project.root + "code/"
 path_project.src = path_project.root + "src/"
-path_project.webroot = path_project.root + "webroot/"
-path_project.webroot_code = path_project.webroot + "code/"
-path_project.webroot_src = path_project.webroot + "src/"
 
 path_webSrc = {}
 path_webSrc.root = "../"
 path_webSrc.code = path_webSrc.root + "code/"
 path_webSrc.src = path_webSrc.root + "src/"
-path_webSrc.node_modules = path_webSrc.root + "node_modules/"
+path_webSrc.node_modules = path_webSrc.root + "code/node_modules/"
 
 #-----------------------------------------------------------------------------
 # watchList
 #-----------------------------------------------------------------------------
 watchList = {
-  jade: {
-    taskName: "jade"
-    pathList_watch: [path_webSrc.code + 'jade/**/*.jade', path_project.code + "jade/**/*.jade"]
-  }
+  # jade: {
+  #   taskName: "jade"
+  #   pathList_watch: [path_webSrc.code + 'view/**/*.jade', path_project.code + "view/**/*.jade"]
+  # }
   stylus: {
     taskName: "stylus"
-    pathList_watch: [path_webSrc.code + 'stylus/**/*.styl', path_project.code + "stylus/**/*.styl"]
+    pathList_watch: [path_webSrc.code + 'css/**/*.styl', path_project.code + "css/**/*.styl"]
   }
   coffee: {
     taskName: "coffee"
-    pathList_watch: [path_webSrc.node_modules + '**/*.coffee', path_project.code + "coffee/**/*.coffee"]
+    pathList_watch: [path_webSrc.node_modules + '**/*.coffee', path_project.code + "js/**/*.coffee"]
   }
   coffeeDoc: {
     taskName: "coffeeDoc"
@@ -64,9 +61,9 @@ watchList = {
     taskName: "jsduck"
     pathList_watch:['../doc/main.js']
   }
-  node: {
-    taskName: "node"
-    pathList_watch:['../node/**/*.coffee']
+  server: {
+    taskName: "server"
+    pathList_watch:['../server/**/*.coffee']
   }
 }
 
@@ -79,8 +76,8 @@ watchList = {
 #-----------------------------------------------------------------------------
 gulp.task('jade', ->
   myTask.jade(
-      [path_webSrc.code + 'jade/**/[^_]*.jade', path_project.code + 'jade/**/[^_]*.jade']
-    , path_project.webroot
+      [path_webSrc.code + 'view/**/[^_]*.jade', path_project.code + 'view/**/[^_]*.jade']
+    , path_project.src + "view/"
   )
 )
 
@@ -89,8 +86,8 @@ gulp.task('jade', ->
 #-----------------------------------------------------------------------------
 gulp.task('coffee', ->
   myTask.coffee(
-      [path_project.code + "coffee/main.coffee"]
-    , path_project.webroot_code + "js/"
+      [path_project.code + "js/main.coffee"]
+    , path_project.src + "js/"
   )
 )
 
@@ -100,7 +97,7 @@ gulp.task('coffee', ->
 gulp.task('liveScript', ->
   myTask.liveScript(
       [path_project.code + "ls/main.ls"]
-    , path_project.webroot_code + "js/"
+    , path_project.src + "js/"
   )
 )
 
@@ -124,10 +121,10 @@ gulp.task('jsduck', ->
 #-----------------------------------------------------------------------------
 # node
 #-----------------------------------------------------------------------------
-gulp.task('node', ->
+gulp.task('server', ->
   myTask.nodeCoffee(
-      ["../node/core.coffee"]
-    , "../node/"
+      ["../server/core.coffee"]
+    , "../server/"
   )
 )
 
@@ -136,8 +133,8 @@ gulp.task('node', ->
 #-----------------------------------------------------------------------------
 gulp.task('stylus', ->
   myTask.stylus(
-      [path_project.code + 'stylus/main.styl']
-    , path_project.webroot_code + 'css/'
+      [path_project.code + 'css/style.styl']
+    , path_project.src + 'css/'
   )
 )
 
